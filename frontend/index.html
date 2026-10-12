@@ -1,0 +1,149 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GoldRate Intelligence | Market Dashboard</title>
+
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="app.js" defer></script>
+</head>
+<body>
+    <div class="app">
+        <aside class="sidebar">
+            <div class="brand">
+                <div class="brand-icon">Au</div>
+                <div>
+                    <h2>GoldRate</h2>
+                    <span>INTELLIGENCE</span>
+                </div>
+            </div>
+
+            <p class="menu-label">WORKSPACE</p>
+            <a class="nav-item active" href="#overview">▦ &nbsp; Overview</a>
+            <a class="nav-item" href="#prices">◈ &nbsp; Gold Prices</a>
+            <a class="nav-item" href="#history">▥ &nbsp; Price History</a>
+
+            <div class="sidebar-bottom">
+                <div class="status-dot"></div>
+                <span>API Connection</span>
+                <strong id="connectionStatus">Checking...</strong>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="topbar">
+                <div>
+                    <p class="eyebrow">MARKET OVERVIEW</p>
+                    <h1>Gold Market Dashboard</h1>
+                    <p class="subtitle">Daily gold rates and historical market trends</p>
+                </div>
+
+                <button id="refreshBtn" class="refresh-btn">
+                    ↻ Refresh Data
+                </button>
+            </header>
+
+            <section class="welcome-panel" id="overview">
+                <div>
+                    <span class="live-label">● DAILY MARKET DATA</span>
+                    <h2>Track gold prices with clarity.</h2>
+                    <p>Explore published Chennai gold rates and daily price movements.</p>
+                </div>
+                <div class="gold-symbol">Au</div>
+            </section>
+
+            <section class="section" id="prices">
+                <div class="section-heading">
+                    <div>
+                        <h2>Current Gold Rates</h2>
+                        <p>Price per gram · Chennai · INR</p>
+                    </div>
+                    <span id="latestDate" class="date-badge">Loading date...</span>
+                </div>
+
+                <div class="price-grid">
+                    <article class="price-card">
+                        <div class="card-top">
+                            <span class="purity">24K GOLD</span>
+                            <span class="purity-icon">24</span>
+                        </div>
+                        <p class="card-description">Pure gold · Per gram</p>
+                        <h3 id="price24">₹--</h3>
+                        <div class="change-row">
+                            <span id="change24" class="change-value">Loading...</span>
+                            <span class="muted">vs previous date</span>
+                        </div>
+                    </article>
+
+                    <article class="price-card secondary-card">
+                        <div class="card-top">
+                            <span class="purity">22K GOLD</span>
+                            <span class="purity-icon">22</span>
+                        </div>
+                        <p class="card-description">Standard gold · Per gram</p>
+                        <h3 id="price22">₹--</h3>
+                        <div class="change-row">
+                            <span id="change22" class="change-value">Loading...</span>
+                            <span class="muted">vs previous date</span>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <section class="section" id="history">
+                <div class="section-heading">
+                    <div>
+                        <h2>Historical Price Trends</h2>
+                        <p>Compare 22K and 24K gold rates over time</p>
+                    </div>
+
+                    <select id="historyLimit" aria-label="Number of historical records">
+                        <option value="7">Last 7 records</option>
+                        <option value="10" selected>Last 10 records</option>
+                        <option value="30">Last 30 records</option>
+                    </select>
+                </div>
+
+                <div class="chart-card">
+                    <canvas id="goldChart"></canvas>
+                    <p id="chartMessage" class="chart-message">Loading historical data...</p>
+                </div>
+            </section>
+
+            <section class="section">
+                <div class="section-heading">
+                    <div>
+                        <h2>Recent Gold Rates</h2>
+                        <p>Historical records from your SQLite database</p>
+                    </div>
+                </div>
+
+                <div class="table-card">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>24K / gram</th>
+                                <th>22K / gram</th>
+                            </tr>
+                        </thead>
+                        <tbody id="historyTable">
+                            <tr>
+                                <td colspan="3">Loading records...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <footer>
+                <span>GoldRate Intelligence</span>
+                <span>Data source: LiveChennai · Daily published rates</span>
+            </footer>
+        </main>
+    </div>
+</body>
+</html>

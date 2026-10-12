@@ -1,26 +1,40 @@
 # GoldRate Intelligence
 
-A Python-based gold-rate tracking platform that collects published Chennai gold prices, stores historical records in SQLite, exposes REST APIs using FastAPI, and visualizes price trends through an interactive dashboard.
+**A Python-Based Gold Rate Tracking, Analytics, and Visualization Platform**
 
-## Features
+GoldRate Intelligence is a Python-based data analytics project that collects published daily gold prices for Chennai, maintains historical records, analyzes price movements, and presents insights through an interactive web dashboard.
 
-- Web scraping with Requests and BeautifulSoup
-- JSON and CSV data export
-- SQLite storage with duplicate prevention
-- Historical 22K and 24K gold-rate tracking
-- Daily price difference and percentage analysis
-- FastAPI REST API with Swagger documentation
-- Interactive dashboard built with HTML, CSS, JavaScript, and Chart.js
-- Automated update script with execution logs
-- Automated API tests using pytest
+The platform combines web scraping, data processing, SQLite storage, REST API development, automated testing, and scheduled execution in a single application.
+
+## Key Features
+
+- **Automated Data Collection:** Scrapes published gold rates using Requests and BeautifulSoup.
+- **Historical Data Management:** Stores and maintains gold-price records in SQLite.
+- **Data Export:** Supports JSON and CSV data formats.
+- **Gold Price Analytics:** Calculates daily price differences and percentage changes for 22K and 24K gold.
+- **REST API:** Provides endpoints through FastAPI with interactive Swagger documentation.
+- **Interactive Dashboard:** Displays gold prices, historical trends, and records using HTML, CSS, JavaScript, and Chart.js.
+- **Scheduled Updates:** Automates daily data collection using Windows Task Scheduler.
+- **Automated Testing:** Uses pytest to validate API functionality.
 
 ## Technology Stack
 
-Python, Requests, BeautifulSoup, SQLite, FastAPI, Pydantic, HTML5, CSS3, JavaScript, Chart.js, pytest.
+| Category | Technologies |
+|---|---|
+| Programming Language | Python |
+| Web Scraping | Requests, BeautifulSoup |
+| Backend API | FastAPI, Pydantic |
+| Database | SQLite |
+| Data Formats | JSON, CSV |
+| Frontend | HTML5, CSS3, JavaScript |
+| Data Visualization | Chart.js |
+| Testing | pytest |
+| Automation | Windows Task Scheduler |
+| Development Tools | VS Code, Git, GitHub |
 
-## Project Structure
+## Project Architecture
 
-
+```text
 GoldRate-Intelligence/
 ├── scraper/
 │   └── gold_scraper.py
@@ -39,47 +53,109 @@ GoldRate-Intelligence/
 ├── requirements.txt
 ├── .gitignore
 └── README.md
+```
 
+## Getting Started
 
-## Setup
+### Prerequisites
 
-1. Clone the repository.
-2. Create and activate a Python virtual environment.
-3. Install dependencies:
+- Python installed on your system
+- Git
+- Visual Studio Code (recommended)
 
-   `python -m pip install -r requirements.txt`
+### 1. Clone the repository
 
-4. Run the data update script:
+```bash
+git clone https://github.com/yokeshvenkadachalam/GoldRate-Intelligence.git
+cd GoldRate-Intelligence
+```
 
-   `python daily_update.py`
+### 2. Create a virtual environment
 
-5. Start the API:
+```bash
+python -m venv .venv
+```
 
-   `python -m uvicorn main:app --reload`
+Activate it on Windows:
 
-6. Open the API documentation at `http://127.0.0.1:8000/docs`.
+```powershell
+.venv\Scripts\activate
+```
 
-7. Open `frontend/index.html` with VS Code Live Server to view the dashboard.
+### 3. Install dependencies
 
-## Run Tests
+```bash
+python -m pip install -r requirements.txt
+```
 
-`python -m pytest tests -v`
+### 4. Update the gold-price data
+
+```bash
+python daily_update.py
+```
+
+This runs the data collection and database update pipeline.
+
+### 5. Start the FastAPI server
+
+```bash
+python -m uvicorn main:app --reload
+```
+
+Open the API documentation:
+
+http://127.0.0.1:8000/docs
+
+### 6. Open the dashboard
+
+Open `frontend/index.html` with the VS Code Live Server extension while the API server is running.
+
+### 7. Run automated tests
+
+```bash
+python -m pytest tests -v
+```
+
+## API Endpoints
+
+| Endpoint | Description |
+|---|---|
+| `GET /` | API home endpoint |
+| `GET /api/gold/latest?city=Chennai` | Retrieves the latest available gold rates |
+| `GET /api/gold/history?city=Chennai&limit=10` | Retrieves historical gold-rate records |
+| `GET /api/gold/analysis?city=Chennai` | Retrieves price-change analysis |
+
+Interactive testing is available through the FastAPI Swagger interface at `/docs`.
 
 ## Data Source
 
-Daily published Chennai gold-rate data is collected from LiveChennai:
+Gold-rate data is collected from LiveChennai:
+
 https://www.livechennai.com/gold_silverrate.asp
 
-Data availability, accuracy, and update frequency depend on the source. The project presents published daily rates, not tick-by-tick market prices.
+The application presents published daily rates rather than live, tick-by-tick market prices. Data availability, accuracy, and update frequency depend on the source website.
 
-## Future Improvements
+## Automation
 
-- Historical price charts and additional analytics
-- Scheduled data collection
-- Improved validation and error handling
-- Deployment and monitoring
-- Additional automated tests
+The daily update pipeline can be scheduled using Windows Task Scheduler. Execution logs help verify whether the scraping and database update process completed successfully.
+
+The computer must be running or otherwise able to execute the scheduled task, with internet access available when the data is collected.
+
+## Future Enhancements
+
+- Deploy the API and dashboard to a public hosting platform.
+- Add interactive date-range filtering and additional analytics.
+- Introduce data-source health checks and retry mechanisms.
+- Set up continuous integration for automated testing.
+- Improve dashboard accessibility and mobile usability.
 
 ## Disclaimer
 
-This project is for educational and informational purposes. Verify rates with an authoritative source before making financial decisions.
+This project is intended for educational and informational purposes only. Gold prices may vary across sources, locations, taxes, and jewellers. Verify rates with a reliable source before making financial decisions.
+
+## Author
+
+**Yokesh V**
+
+GitHub: https://github.com/yokeshvenkadachalam
+
